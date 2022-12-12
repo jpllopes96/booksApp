@@ -22,7 +22,7 @@ export const Title = styled.Text`
 `;
 
 export const Input = styled.TextInput`
-    height: 40;
+    height: 40px;
     margin-left: 15px;
     margin-bottom: 10px;
     margin-right: 15px;
