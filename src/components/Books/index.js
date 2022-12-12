@@ -2,14 +2,14 @@ import React from 'react';
 import { View, Text } from 'react-native';
 import { Container, Name, Price, CenterView, Btn, BtnText } from './styles';
 
-export default function Books({data}) {
+export default function Books({data, edit}) {
  return (
    <Container>
         <Name>{data.name}</Name>
         <Price>R$ {data.price}</Price>
 
         <CenterView>
-            <Btn>
+            <Btn onPress={ () => edit(data)}>
               <BtnText>Edit</BtnText>
             </Btn>
 

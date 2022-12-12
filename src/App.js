@@ -8,6 +8,8 @@ export default function App(){
   const [name, setName] = useState('');
   const [price, setPrice] = useState('');
   const [books, setBooks] = useState([]);
+  const [idEdit, setIdEdit] = useState(null)
+  const [disabledBtn, setDisabledBtn] = useState(false)
 
   useEffect(()=>{
     loadBooks = async () =>{
@@ -55,6 +57,42 @@ export default function App(){
     
   }
 
+  editBook = (data) =>{
+    setName(data.name)
+    setPrice(data.price)
+    setIdEdit(data.id)
+    setDisabledBtn(true)
+  }
+
+  updateBook = async () =>{
+    if(idEdit === null) {
+      alert("You must select a book")
+      return;
+    }
+
+    const realm = await getRealm();
+    const response = {
+      id: idEdit,
+      name: name,
+      price: price
+    }
+
+    await realm.write(()=>{
+      realm.create('Book', response, 'modified')
+    });
+
+    const newData = await realm.objects('Book').sorted('id', false);
+
+    setBooks(newData);
+    setName('');
+    setPrice('');
+    setIdEdit(null);
+    setDisabledBtn(false)
+    Keyboard.dismiss();
+
+  }
+
+
   return(
     <Container>
       <Logo>Books Wishlist</Logo>
@@ -72,12 +110,16 @@ export default function App(){
       />
 
       <CenterView>
-        <Btn onPress={ addBook}>
+        <Btn onPress={ addBook} disabled={disabledBtn}
+          style={{ opacity: disabledBtn ? 0.1 : 1 }}
+        >
             <BtnText>Add</BtnText>
         </Btn>
 
-        <Btn>
-            <BtnText>Edit</BtnText>
+        <Btn onPress={updateBook} disabled={!disabledBtn}
+          style={{ opacity: !disabledBtn ? 0.1 : 1 }}
+        >
+            <BtnText>Update</BtnText>
         </Btn>
       </CenterView>
       <List 
@@ -85,7 +127,7 @@ export default function App(){
         keyboardShouldPersistTaps="handled"
         data={books}
         keyExtractor={item => String(item.id)}
-        renderItem={({item}) => (<Books data={item} />)}
+        renderItem={({item}) => (<Books data={item} edit={editBook}/>)}
       />
     </Container>
   )
