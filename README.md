@@ -10,11 +10,8 @@ https://realm.io/
 **Sujeito Programador:**
 https://sujeitoprogramador.com/
 
-<div align="center">
-<img align="left" alt="Home" height="654px" width="320px" src="src/assets/booksApp.png">
-</div>
+![Home](https://github.com/jpllopes96/booksApp/blob/master/src/assets/booksApp.png)
 
-<br/><br/>
 
 ## 🛠️ Features
 
