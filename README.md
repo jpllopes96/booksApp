@@ -36,8 +36,7 @@ https://sujeitoprogramador.com/
 
 ![Done](https://img.shields.io/badge/Status-Done-brightgreen)
 
-<br/>
-
 ## 🌍 Find me
+
 
 - [Linkedin](https://www.linkedin.com/in/joao-lopes-071026198/)
