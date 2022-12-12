@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text } from 'react-native';
 import { Container, Name, Price, CenterView, Btn, BtnText } from './styles';
 
-export default function Books({data, edit}) {
+export default function Books({data, edit, del}) {
  return (
    <Container>
         <Name>{data.name}</Name>
@@ -13,7 +13,7 @@ export default function Books({data, edit}) {
               <BtnText>Edit</BtnText>
             </Btn>
 
-            <Btn>
+            <Btn onPress={ () => del(data)}>
               <BtnText>Delete</BtnText>
             </Btn>
         </CenterView>

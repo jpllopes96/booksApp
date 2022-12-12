@@ -57,6 +57,7 @@ export default function App(){
     
   }
 
+
   editBook = (data) =>{
     setName(data.name)
     setPrice(data.price)
@@ -92,6 +93,21 @@ export default function App(){
 
   }
 
+  deleteBook = async (data) =>{
+    const realm = await getRealm();
+    const ID = data.id;
+
+    realm.write(()=>{
+      if(realm.objects('Book').filtered('id ='+ ID ).length > 0){
+        realm.delete(
+          realm.objects('Book').filtered('id =' + ID)
+        )
+      }
+    })
+
+    const currentBooks = await realm.objects('Book').sorted('id', false);
+    setBooks(currentBooks)
+  }
 
   return(
     <Container>
@@ -127,7 +143,7 @@ export default function App(){
         keyboardShouldPersistTaps="handled"
         data={books}
         keyExtractor={item => String(item.id)}
-        renderItem={({item}) => (<Books data={item} edit={editBook}/>)}
+        renderItem={({item}) => (<Books data={item} edit={editBook} del={deleteBook}/>)}
       />
     </Container>
   )
