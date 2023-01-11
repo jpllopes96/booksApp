@@ -2,7 +2,7 @@
 
 # Descripition 
 
-The App **BooksApp** is a project developed during **Sujeito Programador** classes. The porpouse of the application is to make a Book Wishlist, so then the users can save the book's name and price in the wishlist. Users can also update and remove the book from the list. The datas are persisted through the Realm IO.
+The App **BooksApp** is a project developed during **Sujeito Programador** classes. The purpose of the application is to make a Book Wishlist, so then the users can save the book's name and price in the wishlist. Users can also update and remove the book from the list. The datas are persisted through the Realm IO.
 
 **Realm IO:**
 https://realm.io/
